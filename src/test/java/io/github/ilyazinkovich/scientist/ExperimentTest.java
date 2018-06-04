@@ -19,7 +19,7 @@ class ExperimentTest {
     final Experiment experiment =
         new Experiment(result -> booleanResult.set(result == RESULTS_MATCH));
 
-    final Supplier<Integer> function = () -> 1 + 2;
+    final Supplier<Integer> function = () -> 1;
     final Integer result = experiment.run(function, function);
 
     assertEquals(function.get(), result);
@@ -32,8 +32,8 @@ class ExperimentTest {
     final Experiment experiment =
         new Experiment(result -> booleanResult.set(result == RESULTS_DO_NOT_MATCH));
 
-    final Supplier<Integer> controlFunction = () -> 1 + 2;
-    final Supplier<Integer> candidateFunction = () -> 1 + 3;
+    final Supplier<Integer> controlFunction = () -> 1;
+    final Supplier<Integer> candidateFunction = () -> 2;
     final Integer result = experiment.run(controlFunction, candidateFunction);
 
     assertEquals(controlFunction.get(), result);
@@ -46,12 +46,13 @@ class ExperimentTest {
     final Experiment experiment =
         new Experiment(result -> booleanResult.set(result == CANDIDATE_FAILED));
 
-    final Supplier<Integer> function = () -> 1 + 2;
-    final Integer result = experiment.run(function, () -> {
+    final Supplier<Integer> controlFunction = () -> 1;
+    final Supplier<Integer> candidateFunction = () -> {
       throw new RuntimeException();
-    });
+    };
+    final Integer result = experiment.run(controlFunction, candidateFunction);
 
-    assertEquals(function.get(), result);
+    assertEquals(controlFunction.get(), result);
     await().atMost(ONE_SECOND).untilTrue(booleanResult);
   }
 }
