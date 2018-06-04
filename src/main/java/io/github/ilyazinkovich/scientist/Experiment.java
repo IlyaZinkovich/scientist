@@ -13,7 +13,7 @@ public class Experiment {
 
   private final Consumer<ExperimentResult> experimentResultConsumer;
 
-  public Experiment(final Consumer<ExperimentResult> experimentResultConsumer) {
+  Experiment(final Consumer<ExperimentResult> experimentResultConsumer) {
     this.experimentResultConsumer = experimentResultConsumer;
   }
 

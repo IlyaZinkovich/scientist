@@ -9,11 +9,11 @@ public class ExperimentResultsLogger {
 
   private final String experimentName;
 
-  public ExperimentResultsLogger(final String experimentName) {
+  ExperimentResultsLogger(final String experimentName) {
     this.experimentName = experimentName;
   }
 
-  public void log(final Map<ExperimentResult, Long> results) {
+  void log(final Map<ExperimentResult, Long> results) {
     final String resultsString = results.entrySet().stream()
         .map(entry -> format("%s: %d", entry.getKey().name(), entry.getValue()))
         .collect(joining(", "));
