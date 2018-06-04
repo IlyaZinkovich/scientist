@@ -1,8 +1,8 @@
 package io.github.ilyazinkovich.scientist;
 
-import static io.github.ilyazinkovich.scientist.Outcome.CANDIDATE_FAILED;
-import static io.github.ilyazinkovich.scientist.Outcome.RESULTS_DO_NOT_MATCH;
-import static io.github.ilyazinkovich.scientist.Outcome.RESULTS_MATCH;
+import static io.github.ilyazinkovich.scientist.ExperimentResult.CANDIDATE_FAILED;
+import static io.github.ilyazinkovich.scientist.ExperimentResult.RESULTS_DO_NOT_MATCH;
+import static io.github.ilyazinkovich.scientist.ExperimentResult.RESULTS_MATCH;
 import static org.awaitility.Awaitility.await;
 import static org.awaitility.Duration.ONE_SECOND;
 import static org.junit.jupiter.api.Assertions.assertEquals;
