@@ -1,6 +1,7 @@
 package io.github.ilyazinkovich.scientist;
 
 import static io.github.ilyazinkovich.scientist.Outcome.CANDIDATE_FAILED;
+import static io.github.ilyazinkovich.scientist.Outcome.RESULTS_DO_NOT_MATCH;
 import static io.github.ilyazinkovich.scientist.Outcome.RESULTS_MATCH;
 import static org.awaitility.Awaitility.await;
 import static org.awaitility.Duration.ONE_SECOND;
@@ -22,6 +23,20 @@ class ExperimentTest {
     final Integer result = experiment.run(function, function);
 
     assertEquals(function.get(), result);
+    await().atMost(ONE_SECOND).untilTrue(booleanResult);
+  }
+
+  @Test
+  void testRunComparingDifferentFunctionResults() {
+    final AtomicBoolean booleanResult = new AtomicBoolean();
+    final Experiment experiment =
+        new Experiment(result -> booleanResult.set(result == RESULTS_DO_NOT_MATCH));
+
+    final Supplier<Integer> controlFunction = () -> 1 + 2;
+    final Supplier<Integer> candidateFunction = () -> 1 + 3;
+    final Integer result = experiment.run(controlFunction, candidateFunction);
+
+    assertEquals(controlFunction.get(), result);
     await().atMost(ONE_SECOND).untilTrue(booleanResult);
   }
 
