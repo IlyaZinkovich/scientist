@@ -29,7 +29,7 @@ And observe experiment aggregate results logged each 5 minutes in the following 
 ```js
 
 {
-  "experiment_name": "Experiment",
+  "experiment_name": "sample_experiment",
   "results": {
     "results_match": 31,
     "results_do_not_match": 5,
