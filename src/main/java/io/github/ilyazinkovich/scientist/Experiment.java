@@ -11,10 +11,10 @@ import java.util.function.Supplier;
 
 public class Experiment {
 
-  private final Consumer<Outcome> resultsConsumer;
+  private final Consumer<Outcome> outcomeConsumer;
 
-  public Experiment(final Consumer<Outcome> resultsConsumer) {
-    this.resultsConsumer = resultsConsumer;
+  public Experiment(final Consumer<Outcome> outcomeConsumer) {
+    this.outcomeConsumer = outcomeConsumer;
   }
 
   public <T> T run(final Supplier<T> control, final Supplier<T> candidate) {
@@ -22,7 +22,7 @@ public class Experiment {
     CompletableFuture.supplyAsync(candidate)
         .thenApply(candidateResult -> matchResults(controlResult, candidateResult))
         .exceptionally(exception -> CANDIDATE_FAILED)
-        .thenAccept(resultsConsumer);
+        .thenAccept(outcomeConsumer);
     return controlResult;
   }
 
