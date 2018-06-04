@@ -2,7 +2,6 @@ package io.github.ilyazinkovich.scientist;
 
 import static java.util.concurrent.Executors.newScheduledThreadPool;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
-import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Random;
@@ -28,6 +27,18 @@ class IntegrationTest {
     Stream.generate(this::randomFunction).limit(experimentsNumber)
         .map(randomCandidateFunction -> experiment.run(controlFunction, randomCandidateFunction))
         .forEach(result -> assertEquals(controlFunction.get(), result));
+  }
+
+  @Test
+  void simpleSetupTest() {
+    final Science science = new Science();
+    final Experiment experiment = science.experiment("Simple Experiment");
+
+    final Supplier<Integer> controlFunction = () -> 1;
+    final Supplier<Integer> candidateFunction = () -> 2;
+    final Integer result = experiment.run(controlFunction, candidateFunction);
+
+    assertEquals(controlFunction.get(), result);
   }
 
   private Supplier<Integer> randomFunction() {
