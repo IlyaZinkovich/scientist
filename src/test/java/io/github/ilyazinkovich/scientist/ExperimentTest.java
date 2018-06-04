@@ -48,11 +48,15 @@ class ExperimentTest {
 
     final Supplier<Integer> controlFunction = () -> 1;
     final Supplier<Integer> candidateFunction = () -> {
-      throw new RuntimeException();
+      throw new TestException();
     };
     final Integer result = experiment.run(controlFunction, candidateFunction);
 
     assertEquals(controlFunction.get(), result);
     await().atMost(ONE_SECOND).untilTrue(booleanResult);
+  }
+
+  private static final class TestException extends RuntimeException {
+
   }
 }

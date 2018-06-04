@@ -46,11 +46,15 @@ class IntegrationTest {
     final Supplier<Integer> supplier;
     if (randomInt == 0) {
       supplier = () -> {
-        throw new RuntimeException();
+        throw new TestException();
       };
     } else {
       supplier = () -> randomInt;
     }
     return supplier;
+  }
+
+  private static final class TestException extends RuntimeException {
+
   }
 }

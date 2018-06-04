@@ -3,11 +3,11 @@ package io.github.ilyazinkovich.scientist;
 import static io.github.ilyazinkovich.scientist.ExperimentResult.CANDIDATE_FAILED;
 import static io.github.ilyazinkovich.scientist.ExperimentResult.RESULTS_DO_NOT_MATCH;
 import static io.github.ilyazinkovich.scientist.ExperimentResult.RESULTS_MATCH;
+import static java.util.concurrent.Executors.newScheduledThreadPool;
 import static java.util.concurrent.TimeUnit.MINUTES;
 
 import java.util.EnumMap;
 import java.util.Map;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.LongAdder;
@@ -22,7 +22,7 @@ public class Science {
   private final TimeUnit timeUnit;
 
   public Science() {
-    this(Executors.newScheduledThreadPool(1), DEFAULT_REPORTING_PERIOD, DEFAULT_PERIOD_TIME_UNIT);
+    this(newScheduledThreadPool(1), DEFAULT_REPORTING_PERIOD, DEFAULT_PERIOD_TIME_UNIT);
   }
 
   public Science(final ScheduledExecutorService scheduledExecutorService,
