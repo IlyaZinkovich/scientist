@@ -19,8 +19,8 @@ public class ExperimentResultsLogger {
 
   void log(final Map<ExperimentResult, Long> results) {
     final String resultsString = results.entrySet().stream()
-        .map(entry -> format("%s: %d", entry.getKey().name(), entry.getValue()))
+        .map(entry -> format("\"%s\": %d", entry.getKey().name().toLowerCase(), entry.getValue()))
         .collect(joining(", "));
-    log.info("{} results: {}", experimentName, resultsString);
+    log.info("{\"experiment_name\": \"{}\", \"results\": {{}}}", experimentName, resultsString);
   }
 }
