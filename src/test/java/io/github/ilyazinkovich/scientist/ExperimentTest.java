@@ -1,7 +1,7 @@
 package io.github.ilyazinkovich.scientist;
 
-import static io.github.ilyazinkovich.scientist.Result.CANDIDATE_FAILED;
-import static io.github.ilyazinkovich.scientist.Result.RESULTS_MATCH;
+import static io.github.ilyazinkovich.scientist.Outcome.CANDIDATE_FAILED;
+import static io.github.ilyazinkovich.scientist.Outcome.RESULTS_MATCH;
 import static org.awaitility.Awaitility.await;
 import static org.awaitility.Duration.ONE_MINUTE;
 import static org.awaitility.Duration.ONE_SECOND;

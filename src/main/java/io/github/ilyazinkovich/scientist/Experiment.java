@@ -1,8 +1,8 @@
 package io.github.ilyazinkovich.scientist;
 
-import static io.github.ilyazinkovich.scientist.Result.CANDIDATE_FAILED;
-import static io.github.ilyazinkovich.scientist.Result.RESULTS_DO_NOT_MATCH;
-import static io.github.ilyazinkovich.scientist.Result.RESULTS_MATCH;
+import static io.github.ilyazinkovich.scientist.Outcome.CANDIDATE_FAILED;
+import static io.github.ilyazinkovich.scientist.Outcome.RESULTS_DO_NOT_MATCH;
+import static io.github.ilyazinkovich.scientist.Outcome.RESULTS_MATCH;
 
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -11,9 +11,9 @@ import java.util.function.Supplier;
 
 public class Experiment {
 
-  private final Consumer<Result> resultsConsumer;
+  private final Consumer<Outcome> resultsConsumer;
 
-  public Experiment(final Consumer<Result> resultsConsumer) {
+  public Experiment(final Consumer<Outcome> resultsConsumer) {
     this.resultsConsumer = resultsConsumer;
   }
 
@@ -26,7 +26,7 @@ public class Experiment {
     return controlResult;
   }
 
-  private <T> Result matchResults(final T controlResult, final T candidateResult) {
+  private <T> Outcome matchResults(final T controlResult, final T candidateResult) {
     return Optional.ofNullable(controlResult)
         .filter(result -> result.equals(candidateResult))
         .map(result -> RESULTS_MATCH)
