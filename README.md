@@ -6,13 +6,13 @@ The following code sets up an experiment.
 
 ```java
 
-  final Science science = new Science();
-  final Experiment experiment = science.experiment("sample_experiment");
+  Science science = new Science();
+  Experiment experiment = science.experiment("sample_experiment");
 
-  final Supplier<ReturnType> controlFunction = functionYouWouldLikeToRefactor;
+  Supplier<ReturnType> controlFunction = functionYouWouldLikeToRefactor;
   final Supplier<ReturnType> candidateFunction = refactoredFunction;
 
-  final ReturnType resultFromControlFunction = experiment.run(controlFunction, candidateFunction);
+  ReturnType resultFromControlFunction = experiment.run(controlFunction, candidateFunction);
 
 ```
 
