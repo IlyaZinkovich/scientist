@@ -10,7 +10,7 @@ The following code sets up an experiment.
   Experiment experiment = science.experiment("sample_experiment");
 
   Supplier<ReturnType> controlFunction = functionYouWouldLikeToRefactor;
-  final Supplier<ReturnType> candidateFunction = refactoredFunction;
+  Supplier<ReturnType> candidateFunction = refactoredFunction;
 
   ReturnType resultFromControlFunction = experiment.run(controlFunction, candidateFunction);
 
